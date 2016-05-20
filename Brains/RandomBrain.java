@@ -15,13 +15,20 @@ import Logic.Snake.Direction;
 import Logic.SnakeBrain;
 
 public class RandomBrain implements SnakeBrain {
-
-	@Override
+	
 	public Direction nextDirection(GameInfo gameInfo, Snake snake) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Random generator = new Random();
+	
+		int randomInt = generator.nextInt(4);
+		
+		if (randomInt == 0) {
+			return Snake.Direction.LEFT;
+		} else if (randomInt == 1) {
+			return Snake.Direction.RIGHT;
+		} else if (randomInt == 2) {
+			return Snake.Direction.UP;
+		} else
+			return Snake.Direction.DOWN;
 	}
-
-	//todo: implement brain which does random moves
-
 }

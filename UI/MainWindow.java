@@ -3,12 +3,14 @@ package UI;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import Brains.CustomBrain;
 import Brains.RandomBrain;
 import Logic.Apple;
 import Logic.Field;
 import Logic.Field.CellType;
 import Logic.Game;
 import Logic.GameInfo;
+import Logic.Monsters;
 import Logic.Point;
 import Logic.Snake;
 import Logic.SnakeBrain;
@@ -58,8 +60,8 @@ public class MainWindow extends Application {
 		startPositions.add(start1);
 		startPositions.add(start2);
 		ArrayList<SnakeBrain> brains = new ArrayList<SnakeBrain>();
-		brains.add(new RandomBrain());
-		brains.add(new RandomBrain());
+		brains.add(new CustomBrain()); //changed Brain to CustomBrain
+		brains.add(new CustomBrain()); //changed Brain to CustomBrain
 		ArrayList<Color> colors = new ArrayList<Color>();
 		colors.add(Color.YELLOWGREEN);
 		colors.add(Color.BLUEVIOLET);
@@ -96,6 +98,7 @@ public class MainWindow extends Application {
         primaryStage.show();
     }
     
+    //addes cases for SLOW, SHRINK, GROW, KILL, FREEZE
     public void gameUpdate() {
     	GraphicsContext gc = canvas.getGraphicsContext2D();
     	gc.setFill(Color.GREEN);
@@ -114,7 +117,7 @@ public class MainWindow extends Application {
 					gc.fillRoundRect(x*cellWidth+6, y*cellWidth+6, cellWidth-12, cellWidth-12,10,10);
 					break;
 				case SNAKE:
-					gc.setFill(Color.GREEN);
+					gc.setFill(Color.GREEN); 
 					gc.fillRect(x*cellWidth, y*cellWidth, (x+1)*cellWidth, (y+1)*cellWidth);
 					gc.setFill(Color.BLACK);
 					gc.fillRoundRect(x*cellWidth+1, y*cellWidth+1, cellWidth-2, cellWidth-2,10,10);
@@ -126,6 +129,36 @@ public class MainWindow extends Application {
 				case WALL:
 					gc.setFill(Color.DARKGREEN);
 					gc.fillRect(x*cellWidth, y*cellWidth, (x+1)*cellWidth, (y+1)*cellWidth);
+					break;
+				case SLOW:
+					gc.setFill(Color.GREEN);
+					gc.fillRect(x*cellWidth, y*cellWidth, (x+1)*cellWidth, (y+1)*cellWidth);
+					gc.setFill(Color.YELLOW);
+					gc.fillRoundRect(x*cellWidth+6, y*cellWidth+6, cellWidth-12, cellWidth-12,10,10);
+					break;
+				case SHRINK:
+					gc.setFill(Color.GREEN);
+					gc.fillRect(x*cellWidth, y*cellWidth, (x+1)*cellWidth, (y+1)*cellWidth);
+					gc.setFill(Color.BLUE);
+					gc.fillRoundRect(x*cellWidth+6, y*cellWidth+6, cellWidth-12, cellWidth-12,10,10);
+					break;
+				case GROW:
+					gc.setFill(Color.GREEN);
+					gc.fillRect(x*cellWidth, y*cellWidth, (x+1)*cellWidth, (y+1)*cellWidth);
+					gc.setFill(Color.PINK);
+					gc.fillRoundRect(x*cellWidth+6, y*cellWidth+6, cellWidth-12, cellWidth-12,10,10);
+					break;
+				case KILL:
+					gc.setFill(Color.GREEN);
+					gc.fillRect(x*cellWidth, y*cellWidth, (x+1)*cellWidth, (y+1)*cellWidth);
+					gc.setFill(Color.ORANGE);
+					gc.fillRoundRect(x*cellWidth+6, y*cellWidth+6, cellWidth-12, cellWidth-12,10,10);
+					break;
+				case FREEZE:
+					gc.setFill(Color.GREEN);
+					gc.fillRect(x*cellWidth, y*cellWidth, (x+1)*cellWidth, (y+1)*cellWidth);
+					gc.setFill(Color.WHITE);
+					gc.fillRoundRect(x*cellWidth+6, y*cellWidth+6, cellWidth-12, cellWidth-12,10,10);
 					break;
 				default:
 					break;
@@ -202,7 +235,7 @@ public class MainWindow extends Application {
     
     //TODO: add cases where snake leaves field at one side and enters at another side
     private Snake.Direction relativ(Point p1, Point p2) {
-    	if (p1.x == p2.x && p1.y == p2.y-1) {
+    	if (p1.x == p2.x && p1.y == p2.y-1) {    		
     		return Snake.Direction.DOWN;
     	} else if (p1.x == p2.x && p1.y == p2.y+1) {
     		return Snake.Direction.UP;
