@@ -25,7 +25,7 @@ public class Field {
 	private int width;
 	private int height;
 	private HashMap<Point, Apple> apples;
-	private HashMap<Point, Monsters> monsters;
+	private HashMap<Point, Monsters> monsters; // added hashmap for monsters
 	
 	public Field(int width, int height) {
 		cells = new CellType[width][height];

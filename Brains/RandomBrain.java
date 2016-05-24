@@ -5,6 +5,7 @@
 
 package Brains;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import Logic.Field.CellType;
@@ -30,5 +31,9 @@ public class RandomBrain implements SnakeBrain {
 			return Snake.Direction.UP;
 		} else
 			return Snake.Direction.DOWN;
+	}
+	
+	public Point getClosestApple(GameInfo gameInfo, Point headPosition) {
+		return new Point(0,0);
 	}
 }

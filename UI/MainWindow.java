@@ -93,8 +93,8 @@ public class MainWindow extends Application {
         
         root.setContent(canvas);
         primaryStage.setScene(new Scene(root, 800, 800));
-        primaryStage.setWidth(900);
-        primaryStage.setHeight(600);
+        primaryStage.setWidth(920);
+        primaryStage.setHeight(640);
         primaryStage.show();
     }
     
