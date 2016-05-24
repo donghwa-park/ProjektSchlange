@@ -1,5 +1,5 @@
 /*
- * Implementation of CustomBrain which does custom moves
+ * Implementation of TestBrain which does custom moves
  * Author: Donghwa Park, Yosra Dziri, Jan Saffert
  * */
 
@@ -25,7 +25,7 @@ import Logic.Snake;
 import Logic.Snake.Direction;
 import Logic.SnakeBrain;
 
-public class CustomBrain implements SnakeBrain {
+public class TestBrain implements SnakeBrain {
 	
 	public Direction nextDirection(GameInfo gameInfo, Snake snake) {
 
